@@ -75,6 +75,39 @@ input {
   text-shadow: 0 0 3px black;
   color: transparent;
 }
+
+fieldset {
+  outline:0;
+  border:0;
+  margin:0;
+  text-align:center;
+}
+
+input[type="checkbox"] {
+  display:inline;
+  width: auto;
+  margin-right:1em;
+}
+
+label {
+  display: inline;
+}
+
+.greenfilter {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display: none;
+  background: #73ab03;
+  mix-blend-mode: color;
+}
+
+.greenfilter.visible {
+  display: block;
+}
+
 /* Portrait */
 @media screen and (orientation:portrait) {
     .image {
@@ -90,8 +123,11 @@ input {
 </head>
 <body>
     <input type="file" />
+    <fieldset>
+      <input type="checkbox" name="green" id="green"><label for="green">make it green</label></fieldset>
 <div class="image">
   <img class="output" />
+  <div class="greenfilter"></div>
   <div class="text-output" contenteditable="true" spellcheck="false">yolk</div>
 </div>
 
@@ -99,6 +135,12 @@ input {
 
 const fileInput = document.querySelector("input[type=file]");
 const output = document.querySelector(".output");
+const greenify = document.querySelector("input[type=checkbox]");
+const greenfilter = document.querySelector(".greenfilter");
+
+greenify.addEventListener("change", async() => {
+  greenfilter.classList.toggle("visible");
+})
 
 fileInput.addEventListener("change", async () => {
   const [file] = fileInput.files;
