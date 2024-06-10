@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>yolk generator</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@yolko0no">
+  <meta name="twitter:title" content="Home">
+  <meta name="twitter:image" content="https://brat.yolko0no.com/yolk.png">
+  <meta name="twitter:image:alt" content="yolk">
+  <link rel="canonical" href="https://brat.yolko0no.com">
+  <!-- Fathom - beautiful, simple website analytics -->
+                <script src="https://cdn.usefathom.com/script.js" data-site="ILBPHJZV" defer></script>
+              <!-- / Fathom -->
+
+  <style id="compiled-css" type="text/css">
+    html, body {
+  padding:0;
+  margin:0;
+  width:100%;
+  height:100%;
+  min-height: 100vh;
+  background: #fff;
+}
+body {
+  font-family: arial, sans-serif;
+  padding: 2em;
+  box-sizing: border-box;
+}
+input {
+  text-align:center;
+  width: 50%;
+  margin: auto;
+  display: block;
+}
+.image {
+  width: 80vh;
+  height:100%;
+  max-height: 80vh;
+  max-width: 80vh;
+  display: grid;
+  margin:1em auto;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
+  position: relative;
+  box-sizing: border-box;
+}
+.output {
+  position: absolute;
+  display: block;
+  width:100%;
+  height:100%;
+  outline: 2px solid white;
+  border:0;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  object-fit: cover;
+}
+
+.text-output {
+  font-size: 15vh;
+  transform: scaley(175%);
+  width:100%;
+  max-width: 80vw;
+  text-wrap: wrap;
+  word-break: break-all;
+  position: relative;
+  text-shadow: 0 0 3px black;
+  color: transparent;
+  text-align: justify;
+  text-align-last: center;
+}
+
+fieldset {
+  outline:0;
+  border:0;
+  margin:0;
+  text-align:center;
+}
+
+input[type="checkbox"] {
+  display:inline;
+  width: auto;
+  margin-right:1em;
+}
+
+label {
+  display: inline;
+}
+
+.greenfilter {
+  
+}
+
+.greenfilter.visible {
+   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+   filter: grayscale(100%);
+}
+
+/* Portrait */
+@media screen and (orientation:portrait) {
+    .image {
+      width: 80vw;
+      max-width: 80vw;
+      max-height: 80vw;
+    }
+    .text-output {
+      font-size: 15vw;
+    }
+}
+  </style>
+</head>
+<body>
+    <input type="file" />
+    <fieldset>
+      <input type="checkbox" name="green" id="green"><label for="green">make it green</label></fieldset>
+<div class="image greenfilter">
+  <img class="output" />
+  <div class="text-output" contenteditable="true" spellcheck="false">yolk and it's the same but there's 3 more lines of code so it's different</div>
+</div>
+
+    <script type="text/javascript">
+
+const fileInput = document.querySelector("input[type=file]");
+const output = document.querySelector(".output");
+const greenify = document.querySelector("input[type=checkbox]");
+const greenfilter = document.querySelector(".greenfilter");
+
+greenify.addEventListener("change", async() => {
+  greenfilter.classList.toggle("visible");
+})
+
+fileInput.addEventListener("change", async () => {
+  const [file] = fileInput.files;
+  
+  URL.revokeObjectURL(output.src);
+
+  if (file) {
+    output.src = URL.createObjectURL(file);
+  }
+});
+  </script>
+
+</body>
+</html>
