@@ -209,6 +209,14 @@ const resizeText = ({ element, elements, minSize = 10, maxSize = 512, step = 1, 
 })
     
   </script>
+  <script>
+    document.querySelector('.text').addEventListener("change", async () => {
+      resizeText({
+        elements:document.querySelectorAll('.text'),
+        step:0.5
+      })
+    });
+  </script>
 
 </body>
 </html>
