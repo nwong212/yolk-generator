@@ -185,7 +185,7 @@ fileInput.addEventListener("change", async () => {
   <script>
    const isOverflown = ({ clientHeight, scrollHeight }) => scrollHeight > clientHeight
 
-const resizeText = ({ element, elements, minSize = 10, maxSize = 512, step = 1, unit = 'px' }) => {
+const resizeText = ({ element, elements, minSize = 0, maxSize = 100, step = 0.01, unit = 'vw' }) => {
   (elements || [element]).forEach(el => {
     let i = minSize
     let overflow = false
