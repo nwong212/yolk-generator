@@ -213,11 +213,7 @@ const resizeText = ({ element, elements, minSize = 0, maxSize = 12, step = 0.01,
     
   </script>
   <script>
-    document.querySelector('.text').addEventListener("input", async () => {
-      resizeText({
-        elements:document.querySelectorAll('.text')
-      })
-    });
+    
     function debounce(func) {
       var timer;
       return function(event) {
@@ -225,6 +221,11 @@ const resizeText = ({ element, elements, minSize = 0, maxSize = 12, step = 0.01,
         timer = setTimeout(func, 100, event);
       };
     };
+    document.querySelector('.text').addEventListener("input", debounce(function(e) {
+      resizeText({
+        elements:document.querySelectorAll('.text')
+      })
+    }));
     window.addEventListener('resize', debounce(function(e) {
       resizeText({
         elements:document.querySelectorAll('.text')
