@@ -30,6 +30,7 @@ body {
   font-family: arial, sans-serif;
   padding: 2em;
   box-sizing: border-box;
+  
 }
 input {
   text-align:center;
@@ -61,7 +62,6 @@ input {
   right:0;
   bottom:0;
   object-fit: cover;
-  outline:0;
 }
     img {
       outline:0;
@@ -71,19 +71,28 @@ input {
 
 .text-output {
   font-size: 8vh;
-  transform: scaley(175%);
+  transform:scaleY(121%);
   width:80vh;
-  max-width: 80vw;
+  height: 66vh;
+  max-width: 90vw;
+  max-height: 75vw;
   position: relative;
-  text-shadow: 0 0 2px black;
+  text-shadow: 0 0 0.03em black;
   color: transparent;
   text-align: justify;
   text-align-last: justify;
-  line-height:0.9;
+  line-height:1;
   padding: 10px;
   box-sizing: border-box;
   display: block;
 }
+    .text {
+      display: inline-block;
+      line-height:1;
+    }
+    .text:focus {
+      outline:0;
+    }
 
 fieldset {
   outline:0;
@@ -122,7 +131,7 @@ label {
       max-height: 100vw;
     }
     .text-output {
-      font-size: 10vw;
+      font-size: 12vw;
     }
 }
     .go-to {
@@ -143,7 +152,11 @@ label {
       <input type="checkbox" name="green" id="green"><label for="green">make it grayscale</label></fieldset>
 <div class="image greenfilter">
   <img class="output" />
-  <div class="text-output" contenteditable="true" spellcheck="false">yolk and it's <br/>the same but <br/>there's three <br/>more code <br/>so it's not</div>
+  <div class="text-output" contenteditable="true" spellcheck="false">
+    <span class="text">
+      yolk and it's <br/>the same but <br/>there's three <br/>more code <br/>so it's not
+    </span>
+  </div>
 </div>
 
     <script type="text/javascript">
@@ -166,6 +179,59 @@ fileInput.addEventListener("change", async () => {
     output.src = URL.createObjectURL(file);
   }
 });
+  </script>
+  
+  <script>
+   const isOverflown = ({ clientHeight, scrollHeight }) => scrollHeight > clientHeight
+
+const resizeText = ({ element, elements, minSize = 0, maxSize = 12, step = 0.01, unit = 'vw' }) => {
+  (elements || [element]).forEach(el => {
+    let i = minSize
+    let overflow = false
+
+        const parent = el.parentNode
+
+    while (!overflow && i < maxSize) {
+        el.style.fontSize = `${i}${unit}`
+        overflow = isOverflown(parent)
+
+      if (!overflow) i += step
+    }
+
+    // revert to last state where no overflow happened
+    el.style.fontSize = `${i - step}${unit}`
+  })
+}
+    resizeText({
+  elements: document.querySelectorAll('.text')
+})
+    
+  </script>
+  <script>
+    document.querySelector('.text').addEventListener("input", async () => {
+      resizeText({
+        elements:document.querySelectorAll('.text')
+      })
+    });
+    function debounce(func) {
+      var timer;
+      return function(event) {
+        if(timer) clearTimeout(timer);
+        timer = setTimeout(func, 100, event);
+      };
+    };
+    window.addEventListener('resize', debounce(function(e) {
+      resizeText({
+        elements:document.querySelectorAll('.text')
+      })
+    }))
+  </script>
+  <script>
+    document.querySelector("span[contenteditable]").addEventListener("paste", function(e) {
+      e.preventDefault();
+      var text = e.clipboardData.getData("text/plain");
+      document.execCommand("insertHTML", false, text);
+    });
   </script>
 
 </body>
