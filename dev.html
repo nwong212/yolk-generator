@@ -231,6 +231,13 @@ const resizeText = ({ element, elements, minSize = 0, maxSize = 12, step = 0.01,
       })
     }))
   </script>
+  <script>
+    document.querySelector("span[contenteditable]").addEventListener("paste", function(e) {
+      e.preventDefault();
+      var text = e.clipboardData.getData("text/plain");
+      document.execCommand("insertHTML", false, text);
+    });
+  </script>
 
 </body>
 </html>
