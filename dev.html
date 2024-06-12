@@ -203,10 +203,17 @@ const resizeText = ({ element, elements, minSize = 10, maxSize = 512, step = 1, 
     el.style.fontSize = `${i - step}${unit}`
   })
 }
+
+    var text = document.querySelectorAll('.text');
     resizeText({
-  elements: document.querySelectorAll('.text'),
+  elements: text,
   step: 0.5
-})
+});
+    text.addEventListener("change", async () => {
+      resizeText({
+        elements: text,
+        step:0.5
+      });
   </script>
 
 </body>
