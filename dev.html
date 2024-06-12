@@ -185,7 +185,7 @@ fileInput.addEventListener("change", async () => {
   <script>
    const isOverflown = ({ clientHeight, scrollHeight }) => scrollHeight > clientHeight
 
-const resizeText = ({ element, elements, minSize = 0, maxSize = 100, step = 0.01, unit = 'vw' }) => {
+const resizeText = ({ element, elements, minSize = 0, maxSize = 20, step = 0.01, unit = 'vw' }) => {
   (elements || [element]).forEach(el => {
     let i = minSize
     let overflow = false
@@ -211,10 +211,15 @@ const resizeText = ({ element, elements, minSize = 0, maxSize = 100, step = 0.01
   <script>
     document.querySelector('.text').addEventListener("input", async () => {
       resizeText({
-        elements:document.querySelectorAll('.text'),
-        step:0.5
+        elements:document.querySelectorAll('.text')
       })
     });
+
+    window.addEventListener('resize', function() {
+      resizeText({
+        elements:document.querySelectorAll('.text')
+      })
+    })
   </script>
 
 </body>
