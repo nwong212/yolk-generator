@@ -50,7 +50,6 @@ input {
   position: relative;
   box-sizing: border-box;
   text-align: center;
-  outline: 1px solid blue;
 }
 .output {
   position: absolute;
@@ -63,7 +62,6 @@ input {
   right:0;
   bottom:0;
   object-fit: cover;
-  outline:1px solid green;
 }
     img {
       outline:0;
@@ -87,8 +85,10 @@ input {
   padding: 10px;
   box-sizing: border-box;
   display: block;
-  outline: 1px solid red;
 }
+    .text:focus {
+      outline:0;
+    }
 
 fieldset {
   outline:0;
