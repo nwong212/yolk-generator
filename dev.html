@@ -149,7 +149,7 @@ label {
 <div class="image greenfilter">
   <img class="output" />
   <div class="text-output">
-    <span contenteditable="true" spellcheck="false">
+    <span class="text" contenteditable="true" spellcheck="false">
     yolk and it's
     <br/>
     the same but
@@ -181,6 +181,27 @@ fileInput.addEventListener("change", async () => {
     output.src = URL.createObjectURL(file);
   }
 });
+  </script>
+  <script>
+   const isOverflown = ({ clientHeight, scrollHeight }) => scrollHeight > clientHeight;
+    const resizeText = ({ element, parent }) => {
+  let i = 12 // let's start with 12px
+  let overflow = false
+  const maxSize = 128 // very huge text size
+
+  while (!overflow && i < maxSize) {
+    element.style.fontSize = `${i}px`
+    overflow = isOverflown(parent)
+    if (!overflow) i++
+  }
+
+  // revert to last state where no overflow happened:
+  element.style.fontSize = `${i - 1}px`
+}
+    resizeText({
+  element: document.querySelector('.text'),
+  parent: document.querySelector('.text-output')
+})
   </script>
 
 </body>
