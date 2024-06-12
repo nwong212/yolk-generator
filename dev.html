@@ -214,12 +214,18 @@ const resizeText = ({ element, elements, minSize = 0, maxSize = 20, step = 0.01,
         elements:document.querySelectorAll('.text')
       })
     });
-
-    window.addEventListener('resize', function() {
+    function debounce(func) {
+      var timer;
+      return function(event) {
+        if(timer) clearTimeout(timer);
+        timer = setTimeout(func, 100, event);
+      };
+    };
+    window.addEventListener('resize', debounce(function(e) {
       resizeText({
         elements:document.querySelectorAll('.text')
       })
-    })
+    }))
   </script>
 
 </body>
