@@ -206,7 +206,7 @@ const resizeText = ({ element, elements, minSize = 10, maxSize = 512, step = 1, 
 
     var text = document.querySelector('.text');
     resizeText({
-  elements: text,
+  element: text,
   step: 0.5
 });
     text.addEventListener("change", async () => {
