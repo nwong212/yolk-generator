@@ -215,11 +215,11 @@ const resizeText = ({ element, elements, minSize = 0, maxSize = 12, step = 0.01,
         timer = setTimeout(func, 200, event);
       };
     };
-    document.querySelector('.text').addEventListener("input", debounce(function(e) {
+    document.querySelector('.text').addEventListener("blur", function(e) {
       resizeText({
         elements:document.querySelectorAll('.text')
       })
-    }));
+    });
     window.addEventListener('resize', debounce(function(e) {
       resizeText({
         elements:document.querySelectorAll('.text')
