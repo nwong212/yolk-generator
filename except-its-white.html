@@ -17,7 +17,7 @@
                 <script src="https://cdn.usefathom.com/script.js" data-site="ILBPHJZV" defer></script>
               <!-- / Fathom -->
 
-  <style id="compiled-css" type="text/css">
+    <style id="compiled-css" type="text/css">
     html, body {
   padding:0;
   margin:0;
@@ -89,6 +89,7 @@ input {
     .text {
       display: inline-block;
       line-height:1;
+      width : 100%;
     }
     .text:focus {
       outline:0;
@@ -154,7 +155,7 @@ label {
   <img class="output" />
   <div class="text-output">
     <span class="text" contenteditable="true" spellcheck="false">
-      yolk and it's <br/>the same but <br/>there's three <br/>more code <br/>so it's not
+    yolk and it's <br/>the same but <br/>there's three <br/>more code <br/>so it's not
     </span>
   </div>
 </div>
@@ -180,7 +181,6 @@ fileInput.addEventListener("change", async () => {
   }
 });
   </script>
-  
   <script>
    const isOverflown = ({ clientHeight, scrollHeight }) => scrollHeight > clientHeight
 
@@ -208,18 +208,19 @@ const resizeText = ({ element, elements, minSize = 0, maxSize = 12, step = 0.01,
     
   </script>
   <script>
-    document.querySelector('.text').addEventListener("input", async () => {
-      resizeText({
-        elements:document.querySelectorAll('.text')
-      })
-    });
+    
     function debounce(func) {
       var timer;
       return function(event) {
         if(timer) clearTimeout(timer);
-        timer = setTimeout(func, 100, event);
+        timer = setTimeout(func, 200, event);
       };
     };
+    document.querySelector('.text').addEventListener("blur", function(e) {
+      resizeText({
+        elements:document.querySelectorAll('.text')
+      })
+    });
     window.addEventListener('resize', debounce(function(e) {
       resizeText({
         elements:document.querySelectorAll('.text')
