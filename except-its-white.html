@@ -149,9 +149,41 @@ label {
       background:#8ACF00;
       display: block;
     }
+
+    .updated {
+      position: absolute;
+      top:0;
+      left:0;
+      bottom:0;
+      right:0;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      z-index:99999;
+      width:100vw;
+      height:100vh;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+    }
+
+    .updated a {
+      font-size: 4em;
+      /* font-weight: bold; */
+      color: transparent;
+      text-shadow: 0 0 3px black;
+      text-align: justify;
+      text-align-last:justify;
+      max-width: 90vw;
+    }
   </style>
 </head>
 <body>
+
+  <div class="updated">
+    <a href="/" onclick="fathom.trackEvent('go to new version');">
+      there's a new version out, and it's the same but it's slightly better. click here to go to there.
+    </a>
+  </div>
     <a href="/" class="go-to"></a>
     <input type="file" />
     <fieldset>
