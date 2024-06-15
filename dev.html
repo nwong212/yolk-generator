@@ -151,6 +151,10 @@
 						.querySelector("span.text")
 						.classList.toggle("changed", true);
 
+          let type = document.body.classList;
+
+          fathom.trackEvent(`text created for ${type}`);
+
 					resizeText({
 						elements: document.querySelectorAll(".text"),
 					});

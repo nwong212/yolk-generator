@@ -10,10 +10,14 @@ body {
 }
 
 body.brat {
+    transition: background 300ms ease;
+
     background: #8acf00;
 }
 
 body.deluxe {
+    transition: background 300ms ease;
+
     background:#FFF;
 }
 
@@ -37,13 +41,19 @@ input#switch {
     padding:0;
 
     appearance: none;
+
+    cursor: pointer;
 }
 
 .brat input#switch {
+    transition: background 300ms ease;
+
 	background: #fff;
 }
 
 .deluxe input#switch {
+    transition: background 300ms ease;
+
 	background: #8acf00;
 }
 
@@ -159,7 +169,7 @@ label {
 	display: inline;
 }
 
-.brat .greenfilter {
+.greenfilter {
   position: absolute;
   top:0;
   left:0;
