@@ -1,0 +1,199 @@
+html,
+body {
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+
+	background: #8acf00;
+}
+
+body.brat {
+    background: #8acf00;
+}
+
+body.deluxe {
+    background:#FFF;
+}
+
+body {
+	font-family: arial, sans-serif;
+
+	box-sizing: border-box;
+	padding: 2em;
+}
+
+input#switch {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+
+	display: block;
+
+	width: 2rem;
+	height: 2rem;
+    margin:0;
+    padding:0;
+
+    appearance: none;
+}
+
+.brat input#switch {
+	background: #fff;
+}
+
+.deluxe input#switch {
+	background: #8acf00;
+}
+
+input {
+	display: block;
+
+	width: 50%;
+	margin: auto;
+
+	text-align: center;
+}
+
+.image {
+	position: relative;
+
+	display: grid;
+	align-items: center;
+	justify-content: center;
+
+	box-sizing: border-box;
+	width: 80vh;
+	max-width: 80vh;
+	height: 100%;
+	max-height: 80vh;
+	margin: 2em auto;
+
+	text-align: center;
+}
+
+.output {
+	position: absolute;
+	inset: 0;
+
+	width: 100%;
+	height: 100%;
+
+	border: 0;
+	object-fit: cover;
+}
+
+.deluxe img {
+	opacity: 0.7;
+	outline: 0;
+	filter: brightness(150%) contrast(1.5);
+}
+
+.brat img {
+    filter:none;
+}
+
+img {
+    display:none;
+}
+
+img[src] {
+    display: block;
+}
+
+.text-output {
+	position: relative;
+
+	display: block;
+
+	box-sizing: border-box;
+	width: 80vh;
+	max-width: 90vw;
+	max-height: 66vh;
+	padding: 10px;
+
+	transform: scaleY(121%);
+}
+
+.brat .text-output {
+    text-align:center;
+    text-wrap: wrap;
+    word-break: break-all;
+}
+
+.deluxe .text-output {
+	text-align: justify;
+	text-align-last: justify;
+}
+
+.text {
+    font-size: 10vh;
+    line-height:1;
+
+    display: inline;
+
+    width: 100%;
+
+    color: transparent;
+    text-shadow: 0 0 0.03em black;
+}
+
+fieldset {
+	margin: 0;
+
+	text-align: center;
+
+	border: 0;
+	outline: 0;
+}
+
+input[type="checkbox"] {
+	display: inline;
+
+	width: auto;
+	margin-right: 1em;
+}
+
+label {
+	display: inline;
+}
+
+.brat .greenfilter {
+  position: absolute;
+  top:0;
+  left:0;
+
+  display: none;
+
+  width:100%;
+  height:100%;
+
+  background: #73ab03;
+  mix-blend-mode: color;
+}
+
+.brat .filter.visible .greenfilter {
+    display: block;
+}
+
+.deluxe .filter.visible {
+	filter: grayscale(100%);
+}
+
+/* Portrait */
+@media screen and (orientation: portrait) {
+	body {
+		padding: 2em 0;
+	}
+
+	.image {
+		width: 100vw;
+		max-width: 100vw;
+		max-height: 100vw;
+	}
+
+	.text-output {
+		font-size: 12vw;
+	}
+}

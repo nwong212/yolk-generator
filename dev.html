@@ -1,239 +1,177 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>yolk generator</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:creator" content="@yolko0no">
-  <meta name="twitter:title" content="Home">
-  <meta name="twitter:image" content="https://brat.yolko0no.com/deepfried_1718033121411.jpg">
-  <meta name="twitter:image:alt" content="yolk">
-  <link rel="canonical" href="https://brat.yolko0no.com/except-its-white">
-  <!-- Fathom - beautiful, simple website analytics -->
-                <script src="https://cdn.usefathom.com/script.js" data-site="ILBPHJZV" defer></script>
-              <!-- / Fathom -->
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>yolk generator</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:creator" content="@yolko0no" />
+		<meta name="twitter:title" content="Home" />
+		<meta
+			name="twitter:image"
+			content="https://brat.yolko0no.com/yolk.png"
+		/>
+		<meta name="twitter:image:alt" content="yolk" />
+		<link rel="stylesheet" href="style.css" />
+		<link
+			rel="canonical"
+			href="https://brat.yolko0no.com/dev"
+		/>
+		<!-- Fathom - beautiful, simple website analytics -->
+		<script
+			src="https://cdn.usefathom.com/script.js"
+			data-site="ILBPHJZV"
+			defer
+		></script>
+		<!-- / Fathom -->
+	</head>
+	<body class="deluxe">
+		<input type="checkbox" name="color" id="switch" onclick="fathom.trackEvent('switch');" />
+		<input type="file" onclick="fathom.trackEvent('upload');" />
+		<fieldset>
+			<input type="checkbox" name="green" id="green" />
+			<label for="green"> make it green </label>
+		</fieldset>
+		<div class="image filter">
+			<img class="output" />
+			<div class="greenfilter"></div>
+			<div class="text-output">
+				<span class="text" contenteditable="true" spellcheck="false">
+					yolk and it's the same but there's three more code so it's not
+				</span>
+			</div>
+		</div>
 
-  <style id="compiled-css" type="text/css">
-    html, body {
-  padding:0;
-  margin:0;
-  width:100%;
-  height:100%;
-  min-height: 100vh;
-  background: #fff;
-}
-body {
-  font-family: arial, sans-serif;
-  padding: 2em;
-  box-sizing: border-box;
-  
-}
-input {
-  text-align:center;
-  width: 50%;
-  margin: auto;
-  display: block;
-}
-.image {
-  width: 80vh;
-  height:100%;
-  max-height: 80vh;
-  max-width: 80vh;
-  display: grid;
-  margin:2em auto;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  box-sizing: border-box;
-  text-align: center;
-}
-.output {
-  position: absolute;
-  display: block;
-  width:100%;
-  height:100%;
-  border:0;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  object-fit: cover;
-}
-    img {
-      outline:0;
-      opacity: 0.7;
-      filter: brightness(150%) contrast(1.5);
-    }
+		<script type="text/javascript">
+			const fileInput = document.querySelector("input[type=file]");
+			const output = document.querySelector(".output");
+			const greenify = document.querySelector("input#green");
+			const greenfilter = document.querySelector(".filter");
+			const colorswitch = document.querySelector("input#switch");
 
-.text-output {
-  font-size: 8vh;
-  transform:scaleY(121%);
-  width:80vh;
-  height: 66vh;
-  max-width: 90vw;
-  max-height: 75vw;
-  position: relative;
-  text-shadow: 0 0 0.03em black;
-  color: transparent;
-  text-align: justify;
-  text-align-last: justify;
-  line-height:1;
-  padding: 10px;
-  box-sizing: border-box;
-  display: block;
-}
-    .text {
-      display: inline-block;
-      line-height:1;
-      width : 100%;
-    }
-    .text:focus {
-      outline:0;
-    }
+			colorswitch.addEventListener("change", async () => {
+				if (document.body.classList.contains("brat")) {
+					document.body.classList.remove("brat");
+					document.body.classList.add("deluxe");
+					document.querySelector("label[for='green']").innerHTML =
+						"make it grayscale";
 
-fieldset {
-  outline:0;
-  border:0;
-  margin:0;
-  text-align:center;
-}
+					if (
+						!document
+							.querySelector("span.text")
+							.classList.contains("changed")
+					) {
+						document.querySelector("span.text").innerHTML =
+							"yolk and it's the same but there's three more code so it's not";
 
-input[type="checkbox"] {
-  display:inline;
-  width: auto;
-  margin-right:1em;
-}
+						resizeText({
+							elements: document.querySelectorAll(".text"),
+						});
+					}
+				} else {
+					document.body.classList.remove("deluxe");
+					document.body.classList.add("brat");
+					document.querySelector("label[for='green']").innerHTML =
+						"make it green";
 
-label {
-  display: inline;
-}
+					if (
+						!document
+							.querySelector("span.text")
+							.classList.contains("changed")
+					) {
+						document.querySelector("span.text").innerHTML = "yolk";
 
-.greenfilter {
-  
-}
+						resizeText({
+							elements: document.querySelectorAll(".text"),
+						});
+					}
+				}
+			});
 
-.greenfilter.visible {
-   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-   filter: grayscale(100%);
-}
+			greenify.addEventListener("change", async () => {
+				greenfilter.classList.toggle("visible");
+			});
 
-/* Portrait */
-@media screen and (orientation:portrait) {
-    body {
-      padding: 2em 0;
-    }
-  .image {
-      width: 100vw;
-      max-width: 100vw;
-      max-height: 100vw;
-    }
-    .text-output {
-      font-size: 12vw;
-    }
-}
-    .go-to {
-      width: 2rem;
-      height: 2rem;
-      position: absolute;
-      top: 0;
-      right:0;
-      background:#8ACF00;
-      display: block;
-    }
-  </style>
-</head>
-<body>
-    <a href="/" class="go-to"></a>
-    <input type="file" />
-    <fieldset>
-      <input type="checkbox" name="green" id="green"><label for="green">make it grayscale</label></fieldset>
-<div class="image greenfilter">
-  <img class="output" />
-  <div class="text-output">
-    <span class="text" contenteditable="true" spellcheck="false">
-    yolk and it's <br/>the same but <br/>there's three <br/>more code <br/>so it's not
-    </span>
-  </div>
-</div>
+			fileInput.addEventListener("change", async () => {
+				const [file] = fileInput.files;
 
-    <script type="text/javascript">
+				URL.revokeObjectURL(output.src);
 
-const fileInput = document.querySelector("input[type=file]");
-const output = document.querySelector(".output");
-const greenify = document.querySelector("input[type=checkbox]");
-const greenfilter = document.querySelector(".greenfilter");
+				if (file) {
+					output.src = URL.createObjectURL(file);
+				}
+			});
+		</script>
+		<script>
+			const isOverflown = ({ clientHeight, scrollHeight }) =>
+				scrollHeight > clientHeight;
 
-greenify.addEventListener("change", async() => {
-  greenfilter.classList.toggle("visible");
-})
+			const resizeText = ({
+				element,
+				elements,
+				minSize = 0,
+				maxSize = 12,
+				step = 0.01,
+				unit = "vw",
+			}) => {
+				(elements || [element]).forEach((el) => {
+					let i = minSize;
+					let overflow = false;
 
-fileInput.addEventListener("change", async () => {
-  const [file] = fileInput.files;
-  
-  URL.revokeObjectURL(output.src);
+					const parent = el.parentNode;
 
-  if (file) {
-    output.src = URL.createObjectURL(file);
-  }
-});
-  </script>
-  <script>
-   const isOverflown = ({ clientHeight, scrollHeight }) => scrollHeight > clientHeight
+					while (!overflow && i < maxSize) {
+						el.style.fontSize = `${i}${unit}`;
+						overflow = isOverflown(parent);
 
-const resizeText = ({ element, elements, minSize = 0, maxSize = 12, step = 0.01, unit = 'vw' }) => {
-  (elements || [element]).forEach(el => {
-    let i = minSize
-    let overflow = false
+						if (!overflow) i += step;
+					}
 
-        const parent = el.parentNode
+					// revert to last state where no overflow happened
+					el.style.fontSize = `${i - step}${unit}`;
+				});
+			};
+			resizeText({
+				elements: document.querySelectorAll(".text"),
+			});
+		</script>
+		<script>
+			function debounce(func) {
+				var timer;
+				return function (event) {
+					if (timer) clearTimeout(timer);
+					timer = setTimeout(func, 200, event);
+				};
+			}
+			document
+				.querySelector(".text")
+				.addEventListener("blur", function (e) {
+					document
+						.querySelector("span.text")
+						.classList.toggle("changed", true);
 
-    while (!overflow && i < maxSize) {
-        el.style.fontSize = `${i}${unit}`
-        overflow = isOverflown(parent)
-
-      if (!overflow) i += step
-    }
-
-    // revert to last state where no overflow happened
-    el.style.fontSize = `${i - step}${unit}`
-  })
-}
-    resizeText({
-  elements: document.querySelectorAll('.text')
-})
-    
-  </script>
-  <script>
-    
-    function debounce(func) {
-      var timer;
-      return function(event) {
-        if(timer) clearTimeout(timer);
-        timer = setTimeout(func, 200, event);
-      };
-    };
-    document.querySelector('.text').addEventListener("blur", function(e) {
-      resizeText({
-        elements:document.querySelectorAll('.text')
-      })
-    });
-    window.addEventListener('resize', debounce(function(e) {
-      resizeText({
-        elements:document.querySelectorAll('.text')
-      })
-    }))
-  </script>
-  <script>
-    document.querySelector("span[contenteditable]").addEventListener("paste", function(e) {
-      e.preventDefault();
-      var text = e.clipboardData.getData("text/plain");
-      document.execCommand("insertHTML", false, text);
-    });
-  </script>
-
-</body>
+					resizeText({
+						elements: document.querySelectorAll(".text"),
+					});
+				});
+			window.addEventListener(
+				"resize",
+				debounce(function (e) {
+					resizeText({
+						elements: document.querySelectorAll(".text"),
+					});
+				})
+			);
+		</script>
+		<script>
+			document
+				.querySelector("span[contenteditable]")
+				.addEventListener("paste", function (e) {
+					e.preventDefault();
+					var text = e.clipboardData.getData("text/plain");
+					document.execCommand("insertHTML", false, text);
+				});
+		</script>
+	</body>
 </html>
