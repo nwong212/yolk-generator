@@ -191,6 +191,10 @@ label {
 
 /* Portrait */
 @media screen and (orientation: portrait) {
+	:root {
+		--image-size: 100vw;
+	}
+
 	body {
 		padding: 2em 0;
 	}
