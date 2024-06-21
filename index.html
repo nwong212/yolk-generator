@@ -17,7 +17,7 @@
 		<meta name="twitter:image:alt" content="yolk" />
 		<link rel="stylesheet" href="style.css" />
 		<link rel="canonical" href="https://brat.yolko0no.com/" />
-		
+	
 		<!-- Fathom - beautiful, simple website analytics -->
 		<script
 			src="https://cdn.usefathom.com/script.js"
@@ -28,15 +28,22 @@
 
 		<style>
 			:root {
-				--color-primary: #fff;
+				--color-primary: yellow;
 				--color-secondary: #000;
 				--text-align: justify;
-				--color-next: #8acf00;
+				--color-next: #fff;
+				--color-primary-custom: #fff;
+				--color-secondary-custom: #000000;
 			}
 		</style>
 	</head>
-	<body class="deluxe">
+	<body class="remix">
 		<div class="buttons">
+			<input
+				type="checkbox"
+				class="open-color"
+				id="open-color"
+			/>
 			<input
 				type="button"
 				name="color"
@@ -44,24 +51,88 @@
 				onclick="fathom.trackEvent('switch');"
 			/>
 		</div>
+		<div class="color-customizer">
+			<label for="open-color" class="close-menu" aria-details="close menu">X</label>
+			<fieldset class="color-field">
+				<input
+					type="color"
+					name="--color-primary"
+					id="--color-primary"
+					class="color-p"
+					value="#FFFFFF"
+				/>
+				<label for="--color-primary">Background Color</label>
+			</fieldset>
+			<fieldset class="color-field">
+				<input
+					type="color"
+					name="--color-secondary"
+					id="--color-secondary"
+					class="color-s"
+					value="#000"
+				/>
+				<label for="--color-secondary">Text Color</label>
+			</fieldset>
+			<fieldset class="text-align">
+				<input
+					type="radio"
+					id="left"
+					class="left-button"
+					value="left"
+					name="--text-align"
+				/>
+				<label for="left">Left</label>
+				<input
+					type="radio"
+					id="center"
+					class="center-button"
+					value="center"
+					name="--text-align"
+				/>
+				<label for="center">Center</label>
+				<input
+					type="radio"
+					id="right"
+					class="right-button"
+					value="right"
+					name="--text-align"
+				/>
+				<label for="right">Right</label>
+				<input
+					type="radio"
+					id="justify"
+					class="justify-button"
+					value="justify"
+					name="--text-align"
+				/>
+				<label for="justify">Justify</label>
+			</fieldset>
+		</div>
 		<input type="file" onclick="fathom.trackEvent('upload');" />
 		<fieldset class="options">
 			<input type="checkbox" name="green" id="green" />
-			<label for="green"> make it grayscale </label>
+			<label for="green"> make it remixed </label>
 		</fieldset>
 		<div class="image filter">
 			<img class="output" />
 			<div class="greenfilter"></div>
 			<div class="text-output">
 				<span class="text" contenteditable="true" spellcheck="false">
-					yolk and it's the same but there's three more code so it's
-					not
+					yolk<br />but it's the remix
 				</span>
 			</div>
 		</div>
 
 		<script type="text/javascript">
 			const list = [
+				{
+					id: "remix",
+					checkbox: "make it remixed",
+					text: "yolk, the remix",
+					primary: "yellow",
+					secondary: "#000",
+					align: "left"
+				},
 				{
 					id: "deluxe",
 					checkbox: "make it grayscale",
@@ -90,7 +161,13 @@
 
 			let nextItem;
 
+			document.querySelector("#open-color").addEventListener("change", async() => {
+				document.querySelector(".color-customizer").classList.toggle("open");
+			})
+
 			colorswitch.addEventListener("click", async () => {
+				document.querySelector(".color-customizer").classList.remove("open");
+
 				if (i == list.length - 1) {
 					i = 0;
 				} else {
@@ -151,6 +228,46 @@
 				}
 			});
 		</script>
+
+		<script>
+			// custom color pickers
+			const pickers = document.querySelector(".color-customizer");
+			const customs = document.querySelectorAll(".color-customizer input");
+
+			pickers.addEventListener("change", async () => {
+
+				document.body.classList = "custom";
+
+				if (!textblock.classList.contains("changed")) {
+					textblock.innerHTML = "custom yolk";
+				}
+
+				document.querySelector("label[for=green]").innerHTML = "color it"
+
+				customs.forEach(e => {
+					if(e.type != "radio" || e.checked == true) {
+						document.documentElement.style.setProperty(
+							e.name,
+							e.value
+						);
+					}
+
+					if(e.type == "color") {
+						document.documentElement.style.setProperty(
+							e.name + "-custom",
+							e.value
+						);
+					}
+				});
+
+
+				resizeText({
+					elements: document.querySelectorAll(".text"),
+				});
+			})
+
+		</script>
+
 		<script>
 			const isOverflown = ({ clientHeight, scrollHeight }) =>
 				scrollHeight > clientHeight;

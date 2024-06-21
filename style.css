@@ -83,15 +83,6 @@ input#switch {
 	background: var(--color-next);
 }
 
-input {
-	display: block;
-
-	width: 50%;
-	margin: auto;
-
-	text-align: center;
-}
-
 .close-menu {
 	font-weight: bold;
 
@@ -197,7 +188,7 @@ input {
 	max-height: var(--image-size);
 	margin: 2em auto;
 
-	text-align: center;
+	text-align: left;
 }
 
 .remix .image {
@@ -301,10 +292,24 @@ img[src] {
 	text-shadow: none
 }
 
-fieldset {
-	margin: 0;
+input[type="file"] {
+	display: block;
 
-	text-align: center;
+	box-sizing: border-box;
+	width: 100%;
+
+	max-width: 30rem;
+	margin: auto;
+	padding: 0.5rem;
+
+	text-align: left;
+}
+
+fieldset {
+	box-sizing: border-box;
+	max-width: 30rem;
+	margin: 0 auto;
+	padding: 0.5rem;
 
 	border: 0;
 	outline: 0;
