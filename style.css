@@ -1,3 +1,7 @@
+:root {
+	--image-size: 70vh;
+}
+
 html,
 body {
 	width: 100%;
@@ -6,19 +10,9 @@ body {
 	margin: 0;
 	padding: 0;
 
-	background: #8acf00;
-}
+	color: var(--color-secondary);
 
-body.brat {
-    transition: background 300ms ease;
-
-    background: #8acf00;
-}
-
-body.deluxe {
-    transition: background 300ms ease;
-
-    background:#FFF;
+	background: var(--color-primary);
 }
 
 body {
@@ -26,6 +20,8 @@ body {
 
 	box-sizing: border-box;
 	padding: 2em;
+
+    transition: background 300ms ease;
 }
 
 input#switch {
@@ -40,21 +36,19 @@ input#switch {
     margin:0;
     padding:0;
 
+    cursor: pointer;
+
+    transition: background 300ms ease;
+
+	border: 0;
+	border-radius: 6px;
+	outline: 0;
+
+	background: var(--color-next);
+
     appearance: none;
 
-    cursor: pointer;
-}
-
-.brat input#switch {
-    transition: background 300ms ease;
-
-	background: #fff;
-}
-
-.deluxe input#switch {
-    transition: background 300ms ease;
-
-	background: #8acf00;
+	filter: blur(2px);
 }
 
 input {
@@ -74,10 +68,10 @@ input {
 	justify-content: center;
 
 	box-sizing: border-box;
-	width: 80vh;
-	max-width: 80vh;
+	width: var(--image-size);
+	max-width: var(--image-size);
 	height: 100%;
-	max-height: 80vh;
+	max-height: var(--image-size);
 	margin: 2em auto;
 
 	text-align: center;
@@ -118,9 +112,9 @@ img[src] {
 	display: block;
 
 	box-sizing: border-box;
-	width: 80vh;
-	max-width: 90vw;
-	max-height: 66vh;
+	width: var(--image-size);
+	max-width: var(--image-size);
+	max-height: calc(var(--image-size) / 1.21);
 	padding: 10px;
 
 	transform: scaleY(121%);
@@ -146,7 +140,7 @@ img[src] {
     width: 100%;
 
     color: transparent;
-    text-shadow: 0 0 0.03em black;
+    text-shadow: 0 0 0.03em var(--color-secondary);
 }
 
 fieldset {
@@ -179,16 +173,20 @@ label {
   width:100%;
   height:100%;
 
-  background: #73ab03;
+  background: var(--color-primary);
   mix-blend-mode: color;
 }
 
-.brat .filter.visible .greenfilter {
+.filter.visible .greenfilter {
     display: block;
 }
 
 .deluxe .filter.visible {
 	filter: grayscale(100%);
+}
+
+.deluxe .filter.visible .greenfilter {
+	display: none;
 }
 
 /* Portrait */

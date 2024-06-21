@@ -7,17 +7,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:creator" content="@yolko0no" />
-		<meta name="twitter:title" content="brat generator, but better" />
+		<meta name="twitter:title" content="brat generator by yolk" />
 		<meta
 			name="twitter:image"
 			content="https://brat.yolko0no.com/yolk.png"
 		/>
+		<meta name="description" content="it's like a better version of the official brat generator.">
 		<meta name="twitter:image:alt" content="yolk" />
 		<link rel="stylesheet" href="style.css" />
-		<link
-			rel="canonical"
-			href="https://brat.yolko0no.com/"
-		/>
+		<link rel="canonical" href="https://brat.yolko0no.com/" />
+		
 		<!-- Fathom - beautiful, simple website analytics -->
 		<script
 			src="https://cdn.usefathom.com/script.js"
@@ -25,68 +24,108 @@
 			defer
 		></script>
 		<!-- / Fathom -->
+
+		<style>
+			:root {
+				--color-primary: #fff;
+				--color-secondary: #000;
+				--text-align: justify;
+				--color-next: #8acf00;
+			}
+		</style>
 	</head>
 	<body class="deluxe">
-		<input type="checkbox" name="color" id="switch" onclick="fathom.trackEvent('switch');" />
+		<input
+			type="button"
+			name="color"
+			id="switch"
+			onclick="fathom.trackEvent('switch');"
+		/>
 		<input type="file" onclick="fathom.trackEvent('upload');" />
 		<fieldset>
 			<input type="checkbox" name="green" id="green" />
-			<label for="green"> make it green </label>
+			<label for="green"> make it grayscale </label>
 		</fieldset>
 		<div class="image filter">
 			<img class="output" />
 			<div class="greenfilter"></div>
 			<div class="text-output">
 				<span class="text" contenteditable="true" spellcheck="false">
-					yolk and it's the same but there's three more code so it's not
+					yolk and it's the same but there's three more code so it's
+					not
 				</span>
 			</div>
 		</div>
 
 		<script type="text/javascript">
+			const list = [
+				{
+					id: "deluxe",
+					checkbox: "make it grayscale",
+					text: "yolk and it's the same but there's three more code so it's not",
+					primary: "#FFF",
+					secondary: "#000",
+				},
+				{
+					id: "brat",
+					checkbox: "make it green",
+					text: "yolk",
+					primary: "#8acf00",
+					secondary: "#000",
+				},
+			];
 			const fileInput = document.querySelector("input[type=file]");
 			const output = document.querySelector(".output");
 			const greenify = document.querySelector("input#green");
 			const greenfilter = document.querySelector(".filter");
 			const colorswitch = document.querySelector("input#switch");
+			const textblock = document.querySelector(".text");
 
-			colorswitch.addEventListener("change", async () => {
-				if (document.body.classList.contains("brat")) {
-					document.body.classList.remove("brat");
-					document.body.classList.add("deluxe");
-					document.querySelector("label[for='green']").innerHTML =
-						"make it grayscale";
+			let i = 0;
 
-					if (
-						!document
-							.querySelector("span.text")
-							.classList.contains("changed")
-					) {
-						document.querySelector("span.text").innerHTML =
-							"yolk and it's the same but there's three more code so it's not";
+			let nextItem;
 
-						resizeText({
-							elements: document.querySelectorAll(".text"),
-						});
-					}
+			colorswitch.addEventListener("click", async () => {
+				if (i == list.length - 1) {
+					i = 0;
 				} else {
-					document.body.classList.remove("deluxe");
-					document.body.classList.add("brat");
-					document.querySelector("label[for='green']").innerHTML =
-						"make it green";
-
-					if (
-						!document
-							.querySelector("span.text")
-							.classList.contains("changed")
-					) {
-						document.querySelector("span.text").innerHTML = "yolk";
-
-						resizeText({
-							elements: document.querySelectorAll(".text"),
-						});
-					}
+					i++;
 				}
+
+				if (i >= 0 && i < list.length - 1) {
+					nextItem = list[i + 1];
+				} else {
+					nextItem = list[0];
+				}
+
+				document.body.classList = list[i].id;
+				
+				if (!textblock.classList.contains("changed")) {
+					textblock.innerHTML = list[i].text;
+				}
+				
+				document.documentElement.style.setProperty(
+					"--color-primary",
+					list[i].primary
+				);
+				
+				document.documentElement.style.setProperty(
+					"--color-secondary",
+					list[i].secondary
+				);
+				
+				document.documentElement.style.setProperty(
+					"--color-next",
+					nextItem.primary
+				);
+				
+				document.querySelector("label[for=green]").innerHTML =
+					list[i].checkbox;
+
+
+				resizeText({
+					elements: document.querySelectorAll(".text"),
+				});
 			});
 
 			greenify.addEventListener("change", async () => {
@@ -151,13 +190,13 @@
 						.querySelector("span.text")
 						.classList.toggle("changed", true);
 
-          let type = document.body.classList;
-
-          fathom.trackEvent(`text created for ${type}`);
+					let type = document.body.classList;
 
 					resizeText({
 						elements: document.querySelectorAll(".text"),
 					});
+
+					fathom.trackEvent(`text created for ${type}`);
 				});
 			window.addEventListener(
 				"resize",
