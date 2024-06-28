@@ -258,7 +258,7 @@ img[src] {
 	text-align-last: left;
 
 	border-radius: 0.25rem 0.25rem 0 0;
-	background: yellow;
+	background: var(--color-primary);
 }
 
 .brat .text-output {
