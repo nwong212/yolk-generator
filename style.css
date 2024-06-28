@@ -283,8 +283,8 @@ img[src] {
 
 .remix .text {
 	font-family: monospace;
-	font-size: 0.7rem!important;
-	line-height:1!important;
+	font-size: 0.5rem!important;
+	line-height:1.2!important;
 
 	display: block;
 
