@@ -83,26 +83,26 @@ input#switch {
 	background: var(--color-next);
 }
 
-.indicator::after {
+span.indicator::after {
 	content: 'a';
 	color: transparent;
 	display: block;
 	position: absolute;
 }
 
-.custom .custom-picker .indicator::after {
+.custom .custom-picker span.indicator::after {
 	text-shadow: 0 0 2px var(--color-secondary-custom);
 }
 
-.preset .custom-picker .indicator::after {
+.preset .custom-picker span.indicator::after {
 	display: none;
 }
 
-.preset .preset-picker .indicator::after{
+.preset .preset-picker span.indicator::after{
 	text-shadow: 0 0 2px var(--color-next-secondary);
 }
 
-.next-remix .preset-picker .indicator::after {
+.next-remix .preset-picker span.indicator::after {
 	color: var(--color-next-secondary);
 	text-shadow:none;
 	font-family: monospace;
