@@ -93,6 +93,7 @@ span.indicator {
 	font-size: 1.75em;
 	top:0.25em;
 	display:block;
+	pointer-events: none;
 }
 
 span.indicator::after {
