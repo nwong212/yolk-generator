@@ -86,15 +86,19 @@ input#switch {
 .custom .custom-picker::after {
 	content: 'a';
 	color: transparent;
+	display: block;
+	position: absolute;
 	text-shadow: 0 0 2px var(--color-secondary-custom);
 }
 
-.preset .custom-picker::after {
+.custom-picker::after {
 	display: none;
 }
 
 .preset .preset-picker::after {
 	content: 'a';
+	display: block;
+	position: absolute;
 	color: transparent;
 	text-shadow: 0 0 2px var(--color-secondary);
 }
