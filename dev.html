@@ -150,7 +150,7 @@
 					primary: "#FFF",
 					secondary: "#000",
 					align: "justify",
-					class: "next-remix preset"
+					class: "preset"
 				},
 				{
 					id: "brat",
@@ -168,7 +168,7 @@
 					primary: "yellow",
 					secondary: "#000",
 					align: "left",
-					class: "next-reverse preset"
+					class: "preset"
 				},
 			];
 			const fileInput = document.querySelector("input[type=file]");
@@ -201,7 +201,7 @@
 					nextItem = list[0];
 				}
 
-				var bodyClass = list[i].id + " " + list[i].class;
+				var bodyClass = list[i].id + " " + list[i].class + " next-" + nextItem.id;
 
 				document.body.classList = bodyClass;
 
