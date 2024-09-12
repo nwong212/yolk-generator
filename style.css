@@ -83,29 +83,28 @@ input#switch {
 	background: var(--color-next);
 }
 
-.custom .custom-picker::after {
+.indicator::after {
 	content: 'a';
 	color: transparent;
 	display: block;
 	position: absolute;
+}
+
+.custom .custom-picker .indicator::after {
 	text-shadow: 0 0 2px var(--color-secondary-custom);
 }
 
-.custom-picker::after {
+.preset .custom-picker .indicator::after {
 	display: none;
 }
 
-.preset .preset-picker::after {
-	content: 'a';
-	display: block;
-	position: absolute;
-	color: transparent;
-	text-shadow: 0 0 2px var(--color-secondary);
+.preset .preset-picker .indicator::after{
+	text-shadow: 0 0 2px var(--color-next-secondary);
 }
 
-.next-remix .preset-picker::after {
-	content: 'a';
+.next-remix .preset-picker .indicator::after {
 	color: var(--color-next-secondary);
+	text-shadow:none;
 	font-family: monospace;
 }
 
