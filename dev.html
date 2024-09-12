@@ -30,28 +30,33 @@
 
 		<style>
 			:root {
-				--color-primary: yellow;
+				--color-primary: #8acf00;
 				--color-secondary: #000;
-				--text-align: justify;
+				--text-align: center;
 				--color-next: #fff;
+				--color-next-secondary: #000;
 				--color-primary-custom: #fff;
 				--color-secondary-custom: #000000;
 			}
 		</style>
 	</head>
-	<body class="remix">
+	<body class="tarb">
 		<div class="buttons">
-			<input
-				type="checkbox"
-				class="open-color"
-				id="open-color"
-			/>
-			<input
-				type="button"
-				name="color"
-				id="switch"
-				onclick="fathom.trackEvent('switch');"
-			/>
+			<fieldset class="custom-picker">
+				<input
+					type="checkbox"
+					class="open-color"
+					id="open-color"
+				/>
+			</fieldset>
+			<fieldset class="preset-picker">
+				<input
+					type="button"
+					name="color"
+					id="switch"
+					onclick="fathom.trackEvent('switch');"
+				/>
+			</fieldset>
 		</div>
 		<div class="color-customizer">
 			<label for="open-color" class="close-menu" aria-details="close menu">X</label>
@@ -128,12 +133,13 @@
 		<script type="text/javascript">
 			const list = [
 				{
-					id: "remix",
-					checkbox: "make it remixed",
-					text: "yolk, the remix",
-					primary: "yellow",
+					id: "tarb",
+					checkbox: "make it green",
+					text: "yolk",
+					primary: "#8acf00",
 					secondary: "#000",
-					align: "left"
+					align: "center",
+					class: "preset"
 				},
 				{
 					id: "deluxe",
@@ -142,6 +148,7 @@
 					primary: "#FFF",
 					secondary: "#000",
 					align: "justify",
+					class: "next-remix preset"
 				},
 				{
 					id: "brat",
@@ -150,6 +157,16 @@
 					primary: "#8acf00",
 					secondary: "#000",
 					align: "center",
+					class: "preset"
+				},
+				{
+					id: "remix",
+					checkbox: "make it remixed",
+					text: "yolk, the remix",
+					primary: "yellow",
+					secondary: "#000",
+					align: "left",
+					class: "preset"
 				},
 			];
 			const fileInput = document.querySelector("input[type=file]");
@@ -182,7 +199,7 @@
 					nextItem = list[0];
 				}
 
-				document.body.classList = list[i].id;
+				document.body.classList = list[i].id + " " + list[i].class;
 
 				if (!textblock.classList.contains("changed")) {
 					textblock.innerHTML = list[i].text;
@@ -201,6 +218,11 @@
 				document.documentElement.style.setProperty(
 					"--color-next",
 					nextItem.primary
+				);
+
+				document.documentElement.style.setProperty(
+					"--color-next-secondary",
+					nextItem.secondary
 				);
 
 				document.documentElement.style.setProperty(
