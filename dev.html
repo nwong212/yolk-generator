@@ -199,7 +199,9 @@
 					nextItem = list[0];
 				}
 
-				document.body.classList = list[i].id + " " + list[i].class;
+				var bodyClass = list[i].id + " " + list[i].class;
+
+				document.body.classList = bodyClass;
 
 				if (!textblock.classList.contains("changed")) {
 					textblock.innerHTML = list[i].text;
