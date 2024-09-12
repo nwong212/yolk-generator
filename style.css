@@ -103,6 +103,15 @@ span.indicator::after {
 	display: block;
 }
 
+.next-reverse span.indicator::after {
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
+}
+
 .custom .custom-picker span.indicator::after {
 	color:var(--color-secondary-custom);
 }
