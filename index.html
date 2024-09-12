@@ -37,19 +37,25 @@
 			}
 		</style>
 	</head>
-	<body class="remix">
+	<body class="tarb preset">
 		<div class="buttons">
-			<input
-				type="checkbox"
-				class="open-color"
-				id="open-color"
-			/>
-			<input
-				type="button"
-				name="color"
-				id="switch"
-				onclick="fathom.trackEvent('switch');"
-			/>
+			<fieldset class="custom-picker">
+				<input
+					type="checkbox"
+					class="open-color"
+					id="open-color"
+				/>
+				<span class="indicator"></span>
+			</fieldset>
+			<fieldset class="preset-picker">
+				<input
+					type="button"
+					name="color"
+					id="switch"
+					onclick="fathom.trackEvent('switch');"
+				/>
+				<span class="indicator"></span>
+			</fieldset>
 		</div>
 		<div class="color-customizer">
 			<label for="open-color" class="close-menu" aria-details="close menu">X</label>
@@ -118,7 +124,7 @@
 			<div class="greenfilter"></div>
 			<div class="text-output">
 				<span class="text" contenteditable="true" spellcheck="false">
-					yolk<br />but it's the remix
+					yolk but it's not the same
 				</span>
 			</div>
 		</div>
@@ -126,12 +132,13 @@
 		<script type="text/javascript">
 			const list = [
 				{
-					id: "remix",
-					checkbox: "make it remixed",
-					text: "yolk, the remix",
-					primary: "#fe0",
+					id: "tarb",
+					checkbox: "make it green",
+					text: "yolk but it's not the same",
+					primary: "#8acf00",
 					secondary: "#000",
-					align: "left"
+					align: "left",
+					class: "preset"
 				},
 				{
 					id: "deluxe",
@@ -140,6 +147,7 @@
 					primary: "#FFF",
 					secondary: "#000",
 					align: "justify",
+					class: "preset"
 				},
 				{
 					id: "brat",
@@ -148,6 +156,16 @@
 					primary: "#8acf00",
 					secondary: "#000",
 					align: "center",
+					class: "preset"
+				},
+				{
+					id: "remix",
+					checkbox: "make it remixed",
+					text: "yolk, the remix",
+					primary: "yellow",
+					secondary: "#000",
+					align: "left",
+					class: "preset"
 				},
 			];
 			const fileInput = document.querySelector("input[type=file]");
@@ -180,7 +198,9 @@
 					nextItem = list[0];
 				}
 
-				document.body.classList = list[i].id;
+				var bodyClass = list[i].id + " " + list[i].class + " next-" + nextItem.id;
+
+				document.body.classList = bodyClass;
 
 				if (!textblock.classList.contains("changed")) {
 					textblock.innerHTML = list[i].text;
@@ -199,6 +219,11 @@
 				document.documentElement.style.setProperty(
 					"--color-next",
 					nextItem.primary
+				);
+
+				document.documentElement.style.setProperty(
+					"--color-next-secondary",
+					nextItem.secondary
 				);
 
 				document.documentElement.style.setProperty(
